@@ -1,30 +1,18 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div id="app" class="flex flex-col min-h-screen">
+    <nav >
+      <div>
+        <router-link to="/login">Prijava</router-link>
+        <router-link to="/registration">Registracija</router-link>
+      </div>
+    </nav>
+  </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script setup>
 
-nav {
-  padding: 30px;
+</script>
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+<style>
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>
