@@ -28,7 +28,7 @@
         </div>
 
         <div>
-          <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+          <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Log in</button>
         </div>
       </form>
 
@@ -46,6 +46,8 @@
 
 import { ref } from "vue";
 import axios from "axios"
+import backend from "@/backend";
+
 
 const email = ref("")
 const password = ref("")
@@ -55,15 +57,29 @@ const poruka = ref("")
 async function prijava() {
   poruka.value = ""
   try {
-    const response = await axios.post("http://localhost:3000/api/login", {
+    const response = await backend.post("/login", {
       email: email.value,
       password: password.value
     })
-    poruka.value = "Korisnik je uspijesno ucitan"
+    poruka.value = "Korisnik je uspijesno Ucitan!"
+    alert(poruka.value)
     console.log("korisnik prijavljen", response.data)
+
+    
+
   } catch (error) {
-    poruka.value = "Greska u prijavi"
+
+    if (error.response && error.response.data) {
+      poruka.value = error.response.data.message || error.response.data; 
+    } else {
+      poruka.value = "Doslo je do greske";
+    }
+    
+    alert(poruka.value)
     console.error(error)
+
+    email.value = ""
+    password.value = ""
   }
 }
 
