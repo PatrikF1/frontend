@@ -61,7 +61,7 @@ async function prijava() {
       email: email.value,
       password: password.value
     })
-    poruka.value = "Korisnik je uspijesno Ucitan!"
+    poruka.value = "Korisnik je uspijesno ucitan!"
     alert(poruka.value)
     console.log("korisnik prijavljen", response.data)
 

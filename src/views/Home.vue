@@ -5,7 +5,7 @@
 
   <div class="button-container">
         <button class="gumbR">
-          <router-link to="#" class="link-text">Rezerviraj</router-link>
+          <router-link to="/frizer" class="link-text">Rezerviraj</router-link>
         </button>
         <button class="gumbT">
           <router-link to="#" class="link-text">Termini</router-link>
