@@ -5,6 +5,7 @@ import Registration from '@/views/Registration.vue'
 import Landing from '@/views/Landing.vue'
 import Home from '@/views/Home.vue'
 import Frizer from '@/views/Frizer.vue'
+import Usluge from '@/views/Usluge.vue'
 const routes = [
   {
     path: '/',
@@ -30,6 +31,11 @@ const routes = [
     path: '/frizer',
     name: 'frizer',
     component: Frizer
+  },
+  {
+    path: '/usluge',
+    name: 'usluge',
+    component: Usluge
   }
 ]
 

@@ -3,9 +3,10 @@
     <h1 class="naslov">Frizeri</h1>
     <div class="lista-frizera">
       <div v-if="loading" class="loading">Pricekajte...</div>
-      <button v-for="frizer in frizeri" :key="frizer._id" class="gumb-frizer">
+      <button v-for="frizer in frizeri" :key="frizer.ime + frizer.prezime" class="gumb-frizer" @click="odabir(frizer)">
         <h2 class="info">{{ frizer.ime }} {{ frizer.prezime }}</h2>
         <p>{{ frizer.iskustvo }}</p>
+        <p class="click">&#x2702;&#xFE0F</p>
       </button>
     </div>
   </div>
@@ -14,6 +15,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import backend from '@/backend'
+import router from '@/router'
 
 const frizeri = ref([])
 const poruka = ref('')
@@ -38,6 +40,10 @@ async function dohvatiFrizera () {
   }
 }
 
+async function odabir(frizer) {
+  router.push({path:'/usluge', query: { ime: frizer.ime, prezime: frizer.prezime }})
+}
+
 onMounted(() => {
   dohvatiFrizera()
 })
@@ -49,6 +55,7 @@ onMounted(() => {
   flex-direction: column;
   min-height: 100vh;
   display: flex;
+  overflow: hidden;
 }
 
 .naslov {
@@ -56,6 +63,7 @@ onMounted(() => {
   font-size: 2rem;
   position: relative;
   top: 5rem;
+  color: #27374D;
 }
 
 .lista-frizera {
@@ -65,18 +73,33 @@ onMounted(() => {
   position: relative;
   top: 12rem;
   right: -2rem;
+  font-size: 1.2rem;
 }
 
 .gumb-frizer {
   background-color: #526D82;
   color: white;
-  border: none;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 200px;
-  text-align: center;
-  cursor: pointer;
+  width: 320px;
+  text-align: left;
   transition: all 0.3s ease;
 }
+
+.click {
+  position: relative;
+  right: -13rem;
+  font-size: 30px;
+  top: -2rem;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.gumb-frizer:hover {
+  background-color: #80acce; 
+  transform: scale(1.05);
+}
+
+
 </style>
