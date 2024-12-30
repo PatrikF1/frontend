@@ -2,7 +2,7 @@
  
   <div class="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-[#DDE6ED]">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <img class="mx-auto h-40 w-50" src="/images/logo.png" alt="Your Company" />
+      <img class="mx-auto h-40 w-50" src="/images/logo.png" alt="sharpapp" />
       <h2 class="mt-10 text-center text-2xl/9 tracking-tight text-[#27374D] ">Sign in to your account</h2>
     </div>
 
@@ -47,7 +47,7 @@
 import { ref } from "vue";
 import axios from "axios"
 import backend from "@/backend";
-
+import router from "@/router"
 
 const email = ref("")
 const password = ref("")
@@ -65,7 +65,7 @@ async function prijava() {
     alert(poruka.value)
     console.log("korisnik prijavljen", response.data)
 
-    
+    router.push({path: '/home'})
 
   } catch (error) {
 
