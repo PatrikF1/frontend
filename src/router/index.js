@@ -6,6 +6,7 @@ import Landing from '@/views/Landing.vue'
 import Home from '@/views/Home.vue'
 import Frizer from '@/views/Frizer.vue'
 import Usluge from '@/views/Usluge.vue'
+import Termini from '@/views/Termini.vue'
 const routes = [
   {
     path: '/',
@@ -36,6 +37,11 @@ const routes = [
     path: '/usluge',
     name: 'usluge',
     component: Usluge
+  },
+  {
+    path: '/termini',
+    nama: 'termini',
+    component: Termini
   }
 ]
 
