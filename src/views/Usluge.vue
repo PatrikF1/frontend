@@ -44,8 +44,8 @@ async function dohvatiUsluge () {
   }
 }
 
-async function odabir(frizer) {
-  router.push({path:'/usluge'})
+async function odabir(usluga) {
+  router.push({path:'/termini'})
 }
 
 onMounted(() => {
