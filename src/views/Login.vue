@@ -45,9 +45,11 @@
 <script setup>
 
 import { ref } from "vue";
-import axios from "axios"
 import backend from "@/backend";
 import router from "@/router"
+import { useTerminStore } from "@/stores/Store"
+
+const Store = useTerminStore();
 
 const email = ref("")
 const password = ref("")
@@ -61,9 +63,11 @@ async function prijava() {
       email: email.value,
       password: password.value
     })
-    await backend.post('/termini', {
-      email: email.value
-    })
+    Store.postaviKorisnika(response.data.email);
+    console.log("Korisnik u store-u:", Store.korisnik);
+
+
+
     poruka.value = "Korisnik je uspijesno ucitan!"
     alert(poruka.value)
     console.log("korisnik prijavljen", response.data)

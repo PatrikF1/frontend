@@ -1,14 +1,13 @@
 <template>
     <div class="app">
   <img class="mx-auto h-40 w-50" src="/images/logo.png" alt="sharpapp" />
-
-
+  
   <div class="button-container">
         <button class="gumbR">
           <router-link to="/frizer" class="link-text">Rezerviraj</router-link>
         </button>
         <button class="gumbT">
-          <router-link to="#" class="link-text">Termini</router-link>
+          <router-link to="/termini" class="link-text">Termini</router-link>
         </button>
         <button class="gumbP">
           <router-link to="#" class="link-text">Profil</router-link>
@@ -66,6 +65,7 @@ import Mapa from '@/components/Mapa.vue';
     background-color: #DDE6ED;
     flex-direction: column;
     min-height: 270vh;
+    overflow: auto;
 }
 
 .gumbR, .gumbT, .gumbP {

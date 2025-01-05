@@ -7,6 +7,7 @@ import Home from '@/views/Home.vue'
 import Frizer from '@/views/Frizer.vue'
 import Usluge from '@/views/Usluge.vue'
 import Termini from '@/views/Termini.vue'
+
 const routes = [
   {
     path: '/',
@@ -40,9 +41,10 @@ const routes = [
   },
   {
     path: '/termini',
-    nama: 'termini',
+    name: 'termini',
     component: Termini
-  }
+  },
+  
 ]
 
 const router = createRouter({

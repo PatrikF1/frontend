@@ -2,19 +2,19 @@ import { defineStore } from "pinia";
 import backend from "@/backend";
 import { ref } from "vue";
 
-useTerminStore = defineStore('Store', () => {
+export const useTerminStore = defineStore('Store', () => {
     const korisnik = ref(null)
     const frizer = ref(null)
     const usluga = ref(null)
     const datum = ref(null)
 
 
-    function postaviKorisnika(noviKorisnik) {
-        korisnik.value = noviKorisnik
+    function postaviKorisnika(email) {
+        korisnik.value = email
     }
 
     function postaviFrizera(noviFrizer) {
-        frizer.value = noviFrizer
+        frizer.value = `${noviFrizer.ime} ${noviFrizer.prezime}`
     }
 
     function postaviUslugu(novaUsluga) {

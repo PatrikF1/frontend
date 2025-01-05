@@ -16,7 +16,9 @@
 import { ref, onMounted } from 'vue'
 import backend from '@/backend'
 import router from '@/router'
+import { useTerminStore } from '@/stores/Store'
 
+const Store = useTerminStore()
 const frizeri = ref([])
 const poruka = ref('')
 const loading = ref(true)
@@ -41,7 +43,9 @@ async function dohvatiFrizera () {
 }
 
 async function odabir(frizer) {
-  router.push({path:'/usluge', query: { ime: frizer.ime, prezime: frizer.prezime }})
+  Store.postaviFrizera(frizer)
+  router.push({path: '/termini'})
+
 }
 
 onMounted(() => {
