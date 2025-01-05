@@ -3,7 +3,7 @@
     <h1 class="naslov">Usluge</h1>
     <div class="lista-usluga">
       <div v-if="loading" class="loading">Pricekajte...</div>
-      <h1>Frizer: {{ Store.frizer.ime }} {{ Store.frizer.prezime }}</h1>
+      
       <button v-for="usluga in usluge" :key="usluga.usluga" class="gumb-usluge" @click="odabir(usluga)">
         <h2>{{ usluga.usluga }}</h2>
         <p>{{ usluga.trajanje }} min</p>

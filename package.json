@@ -7,11 +7,13 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "axios": "^1.7.9",
     "core-js": "^3.8.3",
     "leaflet": "^1.9.4",
     "leaflet-minimap": "^3.6.1",
     "pinia": "^2.3.0",
+    "v-calendar": "^3.1.2",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vue3-google-map": "^0.21.0"
