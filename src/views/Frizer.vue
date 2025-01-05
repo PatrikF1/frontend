@@ -27,6 +27,7 @@ async function dohvatiFrizera () {
   poruka.value = ''
   try {
     const response = await backend.get('/frizeri')
+    console.log(response.data)
     frizeri.value = response.data
   } catch (error) {
     console.error(error.message)
@@ -44,7 +45,7 @@ async function dohvatiFrizera () {
 
 async function odabir(frizer) {
   Store.postaviFrizera(frizer)
-  router.push({path: '/termini'})
+  router.push({path: '/usluge'})
 
 }
 

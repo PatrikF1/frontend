@@ -3,7 +3,7 @@
     <h1 class="naslov">Usluge</h1>
     <div class="lista-usluga">
       <div v-if="loading" class="loading">Pricekajte...</div>
-      <h1 class="friz">Frizer: {{ ime }} {{ prezime }}</h1>
+      <h1>Frizer: {{ Store.frizer.ime }} {{ Store.frizer.prezime }}</h1>
       <button v-for="usluga in usluge" :key="usluga.usluga" class="gumb-usluge" @click="odabir(usluga)">
         <h2>{{ usluga.usluga }}</h2>
         <p>{{ usluga.trajanje }} min</p>
@@ -14,13 +14,13 @@
 </template>
 
 <script setup>
-import { useRoute } from 'vue-router'
 import backend from '@/backend'
 import { ref, onMounted } from 'vue'
+import router from '@/router'
+import { useTerminStore } from '@/stores/Store'
 
-const dohvati = useRoute()
-const ime = dohvati.query.ime
-const prezime = dohvati.query.prezime
+const Store = useTerminStore()
+
 
 const loading = ref(true)
 const usluge = ref([])
@@ -45,6 +45,7 @@ async function dohvatiUsluge () {
 }
 
 async function odabir(usluga) {
+  Store.postaviUslugu(usluga)
   router.push({path:'/termini'})
 }
 
