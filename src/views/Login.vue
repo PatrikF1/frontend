@@ -63,7 +63,9 @@ async function prijava() {
       email: email.value,
       password: password.value
     })
-    Store.postaviKorisnika(response.data.email);
+
+
+    Store.postaviKorisnika(response.data);
     console.log("Korisnik u store-u:", Store.korisnik);
 
 

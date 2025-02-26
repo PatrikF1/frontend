@@ -1,11 +1,11 @@
 <template>
 <div class="popisTrenutnih">
     <h1>Trenutni rezervirani termini: </h1>
-    <li v-for="termin in trenutniTermin"> {{ termin.korisnik }} {{ termin.frizer.ime }} {{ termin.usluga.usluga }} {{ termin.datum }} </li>
+    <li v-for="termin in trenutniTermin"> {{ termin.korisnik }} - {{ termin.frizer.ime }} - {{ termin.usluga.usluga }} - {{ formatirajDatum(termin.datum) }} </li>
 </div>
 <div class="popisProslih">
     <h1>Prošli termini: </h1>
-    <li v-for="termin in prosliTermin"> {{ termin.korisnik }} {{ termin.frizer.ime }} {{ termin.usluga.usluga }} {{ termin.datum }} </li>
+    <li v-for="termin in prosliTermin"> {{ termin.korisnik }} - {{ termin.frizer.ime }} - {{ termin.usluga.usluga }} - {{ formatirajDatum(termin.datum) }} </li>
 </div>
 </template>
 
@@ -42,6 +42,11 @@ const trenutniTermin = computed(() => {
 const prosliTermin = computed(() => {
     return termini.value.filter(termin => new Date(termin.datum) <= new Date())
 })
+
+function formatirajDatum(formatDatum) {
+  const datum = new Date(formatDatum);
+  return datum.toLocaleDateString("hr-HR", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" });
+}
 
 onMounted(() => {
     dohvatiTermine()
