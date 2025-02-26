@@ -50,5 +50,10 @@ export const useTerminStore = defineStore('Store', () => {
         postaviDatum,
         spremiTermin,
       };
-
+},
+      {
+        persist: {
+            key: 'termin-store',  
+            storage: localStorage  
+        } 
 })

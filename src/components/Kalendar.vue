@@ -5,8 +5,9 @@
   </template>
   
   <script setup>
+  import { useRouter } from 'vue-router';
   import { useTerminStore } from '@/stores/Store';
-  import { onMounted, ref } from 'vue';
+  import { ref } from 'vue';
 
   const date = ref(new Date());
   const rules = ref({
@@ -15,11 +16,16 @@
   });
 
   const Store = useTerminStore()
+  const router = useRouter()
+
+ let poruka = ref("")
 
  async function spremiTermin() {
+  poruka = "Termin je uspiješno rezerviran!"
     Store.postaviDatum(date.value)
-
     await Store.spremiTermin()
+    router.push({path: '/home'})
+    alert(poruka)
   }
   
  

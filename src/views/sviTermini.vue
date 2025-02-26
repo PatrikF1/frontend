@@ -1,17 +1,18 @@
 <template>
 <div class="popisTrenutnih">
     <h1>Trenutni rezervirani termini: </h1>
-    <li v-for="termin in termini"> {{ termin.korisnik }} {{ termin.frizer.ime }} {{ termin.usluga.usluga }} {{ termin.datum }}</li>
+    <li v-for="termin in trenutniTermin"> {{ termin.korisnik }} {{ termin.frizer.ime }} {{ termin.usluga.usluga }} {{ termin.datum }} </li>
 </div>
 <div class="popisProslih">
     <h1>Prošli termini: </h1>
+    <li v-for="termin in prosliTermin"> {{ termin.korisnik }} {{ termin.frizer.ime }} {{ termin.usluga.usluga }} {{ termin.datum }} </li>
 </div>
 </template>
 
 
 <script setup>
 import backend from '@/backend';
-import {onMounted, ref} from 'vue'
+import {onMounted, ref, computed} from 'vue'
 
 const termini = ref([])
 const poruka = ref('')
@@ -33,6 +34,14 @@ try {
     alert(poruka.value)
 }
 }
+
+const trenutniTermin = computed(() => {
+    return termini.value.filter(termin => new Date(termin.datum) > new Date())
+})
+
+const prosliTermin = computed(() => {
+    return termini.value.filter(termin => new Date(termin.datum) <= new Date())
+})
 
 onMounted(() => {
     dohvatiTermine()
