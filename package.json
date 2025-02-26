@@ -14,7 +14,7 @@
     "leaflet-minimap": "^3.6.1",
     "pinia": "^2.3.0",
     "v-calendar": "^3.1.2",
-    "vue": "^3.2.13",
+    "vue": "^3.5.13",
     "vue-router": "^4.0.3",
     "vue3-google-map": "^0.21.0"
   },

@@ -7,7 +7,7 @@
           <router-link to="/frizer" class="link-text">Rezerviraj</router-link>
         </button>
         <button class="gumbT">
-          <router-link to="/termini" class="link-text">Termini</router-link>
+          <router-link to="/svitermini" class="link-text">Termini</router-link>
         </button>
         <button class="gumbP">
           <router-link to="#" class="link-text">Profil</router-link>
@@ -55,7 +55,6 @@ Pronađi svog barbera, rezerviraj termin u nekoliko klikova i dođi po frizuru k
 
 <script setup>
 import Mapa from '@/components/Mapa.vue';
-
 
 </script>
 
