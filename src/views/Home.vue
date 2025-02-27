@@ -21,17 +21,20 @@
   <div class="info">
     <h1 class="about">O nama</h1>
     <br>
-    <p class="txt">Mi smo ekipa koja zna – prava frizura je više od frizure. To je tvoj osobni potpis, i mi smo tu da ti pomognemo da izgledaš kao pravi kralj. Naša aplikacija ti omogućuje da brzo i jednostavno zakoračiš u svijet vrhunskih barbera, bez čekanja i gubljenja vremena.
+    <p class="txt">Mi smo ekipa koja zna - prava frizura je više od frizure. To je tvoj osobni potpis, i mi smo tu da ti pomognemo da izgledaš kao pravi kralj. Naša aplikacija ti omogućuje da brzo i jednostavno zakoračiš u svijet vrhunskih barbera, bez čekanja i gubljenja vremena.
 Pronađi svog barbera, rezerviraj termin u nekoliko klikova i dođi po frizuru koja će te izdići iz mase. Jer tvoj stil je naša misija. </p>
 
-    <div class="block-element"></div>
+    <div class="block-element"></div> 
 
 
     <p class="frizeri">Frizeri</p> 
     <img class="profil" src="/images/profil.png" alt="sharpapp" />
     <!-- Ovdje cu napraviti vue funkciju koja ce dodati ime i sliku frizera na ovu trenutnu sliku -->
-    <p class="ime">Ime</p>
-
+    <div class="imena-frizera">
+  <span v-for="frizer in frizeri" :key="frizer.id" class="ime">
+    {{ frizer.ime }}
+  </span>
+</div>
     <div class="block-element1"></div>
 
     <div class="raspored">
@@ -55,7 +58,30 @@ Pronađi svog barbera, rezerviraj termin u nekoliko klikova i dođi po frizuru k
 
 <script setup>
 import Mapa from '@/components/Mapa.vue';
+import backend from '@/backend';
+import { onMounted, ref } from 'vue'
 
+const frizeri = ref([])
+const poruka = ref("")
+
+async function dohvatiFrizera() {
+  try {
+    let response = await backend.get('/frizeri')
+    frizeri.value = response.data
+  } catch (error) {
+    console.error(error.message)
+    if (error.response && error.response.data) {
+      poruka.value = error.response.data.message || error.response.data
+    } else {
+      poruka.value = 'Doslo je do greske'
+    }
+  }
+}
+
+
+onMounted(() => {
+  dohvatiFrizera()
+})
 </script>
 
 <style>
@@ -65,6 +91,7 @@ import Mapa from '@/components/Mapa.vue';
     flex-direction: column;
     min-height: 270vh;
     overflow: auto;
+    overflow-x: hidden;
 }
 
 .gumbR, .gumbT, .gumbP {

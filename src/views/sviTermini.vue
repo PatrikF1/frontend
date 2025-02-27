@@ -7,15 +7,20 @@
     <h1>Prošli termini: </h1>
     <li v-for="termin in prosliTermin"> {{ termin.korisnik }} - {{ termin.frizer.ime }} - {{ termin.usluga.usluga }} - {{ formatirajDatum(termin.datum) }} </li>
 </div>
+
+<button @click="nazad">Home</button>
+
 </template>
 
 
 <script setup>
 import backend from '@/backend';
 import {onMounted, ref, computed} from 'vue'
+import { useRouter } from 'vue-router';
 
 const termini = ref([])
 const poruka = ref('')
+const router = useRouter()
 
 async function dohvatiTermine () {
     poruka.value = ''
@@ -46,6 +51,11 @@ const prosliTermin = computed(() => {
 function formatirajDatum(formatDatum) {
   const datum = new Date(formatDatum);
   return datum.toLocaleDateString("hr-HR", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" });
+}
+
+
+function nazad() {
+    router.push({path: '/home'})
 }
 
 onMounted(() => {
