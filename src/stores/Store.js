@@ -7,6 +7,7 @@ export const useTerminStore = defineStore('Store', () => {
     const frizer = ref(null)
     const usluga = ref(null)
     const datum = ref(null)
+    
 
 
     function postaviKorisnika(email) {

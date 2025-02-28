@@ -1,13 +1,22 @@
 <template>
-<p v-for="korisnik in korisnici">{{ korisnik.username }}</p>
+<p v-if="trenutniKorisnik">{{ trenutniKorisnik.username }} - {{ trenutniKorisnik.email }} </p>
 </template>
 
 <script setup>
 import backend from '@/backend';
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+import { useTerminStore } from '@/stores/Store';
+
+
+const Store = useTerminStore()
 
 const korisnici = ref([])
 const poruka = ref("")
+
+const trenutniKorisnik = computed(() => {
+  return korisnici.value.find(k => k.email === Store.korisnik);
+});
+
 
 async function dohvatiKorisnika() {
     poruka.value = ""
