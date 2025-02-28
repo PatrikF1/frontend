@@ -10,7 +10,7 @@
           <router-link to="/svitermini" class="link-text">Termini</router-link>
         </button>
         <button class="gumbP">
-          <router-link to="#" class="link-text">Profil</router-link>
+          <router-link to="/profil" class="link-text">Profil</router-link>
         </button>
       </div>
 
@@ -103,6 +103,7 @@ onMounted(() => {
     font-weight: bold;
     width: 10rem; 
     transition: background-color 0.3s;
+    display: block;
   }
   
   .gumbR:hover, .gumbT:hover, .gumbP:hover {
@@ -232,6 +233,10 @@ onMounted(() => {
     text-align: center;
     position: relative;
     top: -4rem;
+  }
+
+  .link-text {
+    display: inline-block;
 
   }
 
