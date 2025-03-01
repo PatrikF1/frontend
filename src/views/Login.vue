@@ -74,7 +74,11 @@ async function prijava() {
     alert(poruka.value)
     console.log("korisnik prijavljen", response.data)
 
-    router.push({path: '/home'})
+    if (Store.korisnik.isAdmin) {
+      router.push({ path: "/admin" });
+    } else {
+      router.push({ path: "/home" });
+    }
 
   } catch (error) {
 

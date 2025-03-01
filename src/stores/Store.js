@@ -11,8 +11,12 @@ export const useTerminStore = defineStore('Store', () => {
 
 
     function postaviKorisnika(email) {
-        korisnik.value = email
+        korisnik.value = {
+            email,
+            isAdmin: email.endsWith("@sharpapp.hr")
+        };
     }
+    
 
     function postaviFrizera(noviFrizer) {
         frizer.value = noviFrizer

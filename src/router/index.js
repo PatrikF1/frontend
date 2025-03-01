@@ -9,6 +9,7 @@ import Usluge from '@/views/Usluge.vue'
 import Termini from '@/views/Termini.vue'
 import SviTermini from '@/views/sviTermini.vue'
 import profilKorisnik from '@/views/profilKorisnik.vue'
+import adminPage from '@/views/adminPage.vue'
 
 const routes = [
   {
@@ -55,6 +56,11 @@ const routes = [
     path: '/profil',
     name: 'profil',
     component: profilKorisnik
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: adminPage
   }
   
 ]
