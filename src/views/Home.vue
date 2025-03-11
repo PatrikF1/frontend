@@ -14,6 +14,8 @@
         </button>
       </div>
 
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" v-on:click="logout">Logout</button>
+
   <img class="homepage" src="/images/homepage.png" alt="sharpapp" />
   <img class="oblak" src="/images/oblak.png" alt="sharpapp" />
   <img class="oblak1" src="/images/oblak.png" alt="sharpapp" />
@@ -60,6 +62,7 @@ Pronađi svog barbera, rezerviraj termin u nekoliko klikova i dođi po frizuru k
 import Mapa from '@/components/Mapa.vue';
 import backend from '@/backend';
 import { onMounted, ref } from 'vue'
+import router from '@/router';
 
 const frizeri = ref([])
 const poruka = ref("")
@@ -78,6 +81,10 @@ async function dohvatiFrizera() {
   }
 }
 
+async function logout() {
+  sessionStorage.clear()
+  router.push({path: '/login'})
+}
 
 onMounted(() => {
   dohvatiFrizera()
