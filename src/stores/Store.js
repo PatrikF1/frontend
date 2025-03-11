@@ -59,6 +59,6 @@ export const useTerminStore = defineStore('Store', () => {
       {
         persist: {
             key: 'termin-store',  
-            storage: localStorage  
+            storage: sessionStorage  
         } 
 })

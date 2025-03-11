@@ -8,7 +8,7 @@
     <li v-for="termin in prosliTermin"> {{ termin.korisnik }} - {{ termin.frizer.ime }} - {{ termin.usluga.usluga }} - {{ formatirajDatum(termin.datum) }} </li>
 </div>
 
-<button @click="nazad">Home</button>
+<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="nazad">Home</button>
 
 </template>
 
