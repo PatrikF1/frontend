@@ -42,13 +42,10 @@
     
 </ul>
 
-<div class="col-span-full">
-            <label for="photo" class="block text-sm/6 font-medium text-gray-900">Photo</label>
-            <div class="mt-2 flex items-center gap-x-3">
-              <UserCircleIcon class="size-12 text-gray-300" aria-hidden="true" />
-              <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">Change</button>
-            </div>
-          </div>
+<div>
+        <label for="slika">Odaberi sliku</label>
+        <input type="file" @change="uploadFile" accept="image/*" required />
+      </div>
 
 <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Dodaj</button>
 </form>
@@ -56,36 +53,46 @@
 </template>
 
 <script setup>
-import { UserCircleIcon } from '@heroicons/vue/24/solid'
 import backend from '@/backend';
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-const ime = ref("")
-const prezime = ref("")
-const iskustvo = ref("")
-const poruka = ref("")
+const ime = ref("");
+const prezime = ref("");
+const iskustvo = ref("");
+const file = ref(null);
+const poruka = ref("");
 
-
+const uploadFile = (event) => {
+  file.value = event.target.files[0];
+};
 
 async function dodajFrizera() {
-    poruka.value = ""
-    try {
-        const response = await backend.post("/frizeri", {
-            ime: ime.value,
-            prezime: prezime.value,
-            iskustvo: iskustvo.value
-        })
-        console.log("Frizer dodan: " + JSON.stringify(response.data))
-    } catch (error) {
-        if (error.response && error.response.data) {
-      poruka.value = error.response.data.message || error.response.data; 
-    } else {
-      poruka.value = "Doslo je do greske";
+    if (!file.value) {
+        alert("Molimo dodajte sliku.");
+        return;
     }
-    alert(poruka.value)
+
+    poruka.value = "";
+    try {
+        const formData = new FormData();
+        formData.append("ime", ime.value);
+        formData.append("prezime", prezime.value);
+        formData.append("iskustvo", iskustvo.value);
+        formData.append("file", file.value);
+
+        const response = await backend.post("/upload", formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+        });
+        poruke.value = "Uspijesno je dodan frizer!"
+        alert(poruka.value)
+        console.log("Frizer dodan: ", response.data);
+    } catch (error) {
+        poruka.value = "Došlo je do greške";
+        alert(poruka.value);
     }
 }
 </script>
+
 
 <style>
 
