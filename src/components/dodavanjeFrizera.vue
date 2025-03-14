@@ -4,14 +4,14 @@
         <form @submit.prevent="dodajFrizera" action="#" method="POST">
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               <div class="sm:col-span-3">
-                <label for="first-name" class="block text-sm/6 font-medium text-gray-900">First name</label>
+                <label for="first-name" class="block text-sm/6 font-medium text-gray-900">Ime</label>
                 <div class="mt-2">
                   <input v-model="ime" type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
                 </div>
               </div>
     
               <div class="sm:col-span-3">
-                <label for="last-name" class="block text-sm/6 font-medium text-gray-900">Last name</label>
+                <label for="last-name" class="block text-sm/6 font-medium text-gray-900">prezime</label>
                 <div class="mt-2">
                   <input v-model="prezime" type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
                 </div>
@@ -56,6 +56,7 @@
     import backend from '@/backend';
     import { ref } from 'vue';
     
+    
     const ime = ref("");
     const prezime = ref("");
     const iskustvo = ref("");
@@ -74,6 +75,7 @@
     
         poruka.value = "";
         try {
+
             const formData = new FormData();
             formData.append("ime", ime.value);
             formData.append("prezime", prezime.value);
@@ -83,9 +85,12 @@
             const response = await backend.post("/upload", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
-            poruke.value = "Uspijesno je dodan frizer!"
+            poruka.value = "Uspijesno je dodan frizer!"
             alert(poruka.value)
             console.log("Frizer dodan: ", response.data);
+
+            window.location.reload()
+
         } catch (error) {
           console.error(error.message)
         if (error.response && error.response.data) {

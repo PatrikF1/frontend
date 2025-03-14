@@ -2,7 +2,7 @@
 
 <div>
     Brisanje frizera: 
-    <button v-for="frizer in frizeri" @click="izbrisiFrizera">{{ frizer.ime }} {{ frizer.prezime }} - {{ frizer.iskustvo }} </button>
+    <button v-for="frizer in frizeri" @click="izbrisiFrizera(frizer._id)">{{ frizer.ime }} {{ frizer.prezime }} - {{ frizer.iskustvo }} </button>
 </div>
 
 </template>
@@ -36,7 +36,21 @@ async function dohvatiFrizera () {
   }
 }
 
+
+async function izbrisiFrizera(id) {
+    try {
+        const response = await backend.delete(`/frizeri/${id}`)
+        frizeri.value = frizeri.value.filter(frizer => frizer._id !== id)
+        await dohvatiFrizera()
+        console.log(response)
+    } catch (error) {
+        console.error(error.message)
+    }
+}
+
 onMounted(() => {
     dohvatiFrizera()
 })
+
+
 </script>
