@@ -19,7 +19,7 @@ import { ref, onMounted } from 'vue'
 import backend from '@/backend'
 import router from '@/router'
 import { useTerminStore } from '@/stores/Store'
-import axios from 'axios'
+
 
 const Store = useTerminStore()
 const frizeri = ref([])
@@ -63,14 +63,14 @@ onMounted(() => {
   flex-direction: column;
   min-height: 100vh;
   display: flex;
-  overflow: hidden;
+  align-items: center;
+  overflow-x: hidden; 
 }
 
 .naslov {
   text-align: center;
   font-size: 2rem;
-  position: relative;
-  top: 5rem;
+  margin-top: 3rem;
   color: #27374D;
 }
 
@@ -78,12 +78,12 @@ onMounted(() => {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  position: relative;
-  top: 12rem;
-  right: -2rem;
-  font-size: 1.2rem;
-  max-height: 60vh;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  max-height: auto;
   overflow-y: auto;
+  margin-top: 50px;
 }
 
 .gumb-frizer {
@@ -97,26 +97,18 @@ onMounted(() => {
 }
 
 .click {
-  position: relative;
-  right: -13rem;
+  text-align: right;
   font-size: 30px;
-  top: -2rem;
-  padding: 0;
-  margin: 0;
-  border: 0;
 }
 
 .gumb-frizer:hover {
-  background-color: #80acce; 
+  background-color: #80acce;
   transform: scale(1.05);
 }
 
 .slikaProfila {
-  vertical-align: middle;
   width: 100px;
   height: 100px;
   border-radius: 50%;
-
 }
-
 </style>
