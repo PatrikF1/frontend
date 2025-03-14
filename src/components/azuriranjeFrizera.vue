@@ -1,11 +1,16 @@
 <template>
-
     <div>
-        Azuriranje frizera: 
-        <button class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" v-for="frizer in frizeri">{{ frizer.ime }} {{ frizer.prezime }} - {{ frizer.iskustvo }} </button>
+      <h2>Ažuriranje frizera:</h2>
+  
+      <div class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" v-for="frizer in frizeri" >
+        <button @click="odabraniFrizer = frizer">
+          {{ frizer.ime }} {{ frizer.prezime }} - {{ frizer.iskustvo }} 
+        </button>
+        <input v-model="novoIskustvo" placeholder="Unesi iskustvo" type="text" class="text-black bg-gray-200 px-3 py-1 rounded-md ml-2"/>
+        <button @click="azurirajFrizera(frizer._id)">Spremi</button>
+      </div>
     </div>
-    
-    </template>
+  </template>
 
     <script setup>
 import backend from '@/backend';
@@ -15,7 +20,7 @@ const frizeri = ref([])
 const poruka = ref('')
 const loading = ref(true)
 const novoIskustvo = ref('')
-const id = ref('')
+
 
 async function dohvatiFrizera () {
   poruka.value = ''
@@ -39,16 +44,13 @@ async function dohvatiFrizera () {
 
 async function azurirajFrizera(id) {
     try {
-        frizeri.value = frizeri.value.filter(frizer => frizer._id !== id)
-        const f = frizeri.value
-        const respone = await backend.patch(`/frizeri/${f}`, {
+        const respone = await backend.patch(`/frizeri/${id}`, {
             iskustvo: novoIskustvo.value
         })
-
-        await dohvatiFrizera()
-
+        console.log(respone.data)
+        window.location.reload()
     } catch (error) {
-        
+        console.error(error.message)
     }
 }
 
