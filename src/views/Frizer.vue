@@ -6,7 +6,7 @@
       <button v-for="frizer in frizeri" :key="frizer.ime + frizer.prezime" class="gumb-frizer" @click="odabir(frizer)">
         <h2 class="info">{{ frizer.ime }} {{ frizer.prezime }}</h2>
         <p>{{ frizer.iskustvo }}</p>
-        <img v-if="frizer.slikaId" :src="`http://localhost:3000/api/upload/${frizer.slikaId}`" alt="Slika frizera">
+        <img v-if="frizer.slikaId" :src="`http://localhost:3000/api/upload/${frizer.slikaId}`" class="slikaProfila" alt="Slika frizera">
 
         <p class="click">&#x2702;&#xFE0F</p>
       </button>
@@ -19,6 +19,7 @@ import { ref, onMounted } from 'vue'
 import backend from '@/backend'
 import router from '@/router'
 import { useTerminStore } from '@/stores/Store'
+import axios from 'axios'
 
 const Store = useTerminStore()
 const frizeri = ref([])
@@ -81,6 +82,8 @@ onMounted(() => {
   top: 12rem;
   right: -2rem;
   font-size: 1.2rem;
+  max-height: 60vh;
+  overflow-y: auto;
 }
 
 .gumb-frizer {
@@ -108,5 +111,12 @@ onMounted(() => {
   transform: scale(1.05);
 }
 
+.slikaProfila {
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+
+}
 
 </style>

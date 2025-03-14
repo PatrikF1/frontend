@@ -87,8 +87,12 @@ async function dodajFrizera() {
         alert(poruka.value)
         console.log("Frizer dodan: ", response.data);
     } catch (error) {
-        poruka.value = "Došlo je do greške";
-        alert(poruka.value);
+      console.error(error.message)
+    if (error.response && error.response.data) {
+      poruka.value = error.response.data.message || error.response.data
+    } else {
+      poruka.value = 'Doslo je do greske'
+    }
     }
 }
 
