@@ -69,7 +69,7 @@
     
     async function dodajFrizera() {
         if (!file.value) {
-            alert("Molimo dodajte sliku.");
+            alert("Molimo dodajte sliku!");
             return;
         }
     
