@@ -22,6 +22,8 @@ const termini = ref([])
 const poruka = ref('')
 const router = useRouter()
 
+
+
 async function dohvatiTermine () {
     poruka.value = ''
 try {
