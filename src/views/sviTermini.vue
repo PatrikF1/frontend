@@ -1,7 +1,7 @@
 <template>
 <div class="popisTrenutnih">
     <h1>Trenutni rezervirani termini: </h1>
-    <li v-for="termin in trenutniTermin"> {{ termin.korisnik }} - {{ termin.frizer.ime }} - {{ termin.usluga.usluga }} - {{ formatirajDatum(termin.datum) }} </li>
+    <li v-for="termin in trenutniTermin"> {{ termin.korisnik.email }} - {{ termin.frizer.ime }} - {{ termin.usluga.usluga }} - {{ formatirajDatum(termin.datum) }} </li>
 </div>
 <div class="popisProslih">
     <h1>Prošli termini: </h1>

@@ -30,10 +30,10 @@ Pronađi svog barbera, rezerviraj termin u nekoliko klikova i dođi po frizuru k
 
 
     <p class="frizeri">Frizeri</p> 
-    <img class="profil" src="/images/profil.png" alt="sharpapp" />
-    <!-- Ovdje cu napraviti vue funkciju koja ce dodati ime i sliku frizera na ovu trenutnu sliku -->
+    
     <div class="imena-frizera">
   <span v-for="frizer in frizeri" :key="frizer.id" class="ime">
+    <img v-if="frizer.slikaId" :src="`http://localhost:3000/api/upload/${frizer.slikaId}`" class="profil" alt="Slika frizera">
     {{ frizer.ime }}
   </span>
 </div>
@@ -64,12 +64,16 @@ import backend from '@/backend';
 import { onMounted, ref } from 'vue'
 import router from '@/router';
 
+
 const frizeri = ref([])
 const poruka = ref("")
+const loading = ref(null)
 
-async function dohvatiFrizera() {
+async function dohvatiFrizera () {
+  poruka.value = ''
   try {
-    let response = await backend.get('/frizeri')
+    const response = await backend.get('/frizeri')
+    console.log(response.data)
     frizeri.value = response.data
   } catch (error) {
     console.error(error.message)
@@ -78,6 +82,10 @@ async function dohvatiFrizera() {
     } else {
       poruka.value = 'Doslo je do greske'
     }
+
+    alert(poruka.value)
+  } finally {
+    loading.value = false
   }
 }
 
@@ -180,6 +188,7 @@ onMounted(() => {
     height: 4rem;
     margin-left:5rem;
     margin-top: 3rem;
+    border-radius: 25px;
   }
 
   .ime {
