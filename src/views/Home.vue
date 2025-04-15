@@ -21,7 +21,7 @@
 <img class="homepage" src="/images/homepage.png" alt="sharpapp" />
 
 
-  <img class="homepage" src="/images/homepage.png" alt="sharpapp" />
+  
   <img class="oblak" src="/images/oblak.png" alt="sharpapp" />
   <img class="oblak1" src="/images/oblak.png" alt="sharpapp" />
 

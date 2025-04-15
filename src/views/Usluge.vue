@@ -84,7 +84,7 @@ onMounted(() => {
   flex-wrap: wrap;
   gap: 20px;
   position: relative;
-  top: 10rem;
+  top: 5rem;
   right: -0.5rem;
   font-size: 0.9rem;
 }
