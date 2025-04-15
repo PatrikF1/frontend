@@ -2,6 +2,7 @@
     <div class="app">
   <img class="mx-auto h-40 w-50" src="/images/logo.png" alt="sharpapp" />
   
+  
   <div class="button-container">
         <button class="gumbR">
           <router-link to="/frizer" class="link-text">Rezerviraj</router-link>
@@ -14,7 +15,11 @@
         </button>
       </div>
 
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" v-on:click="logout">Logout</button>
+      <button class="gumbL" v-on:click="logout">Logout</button>
+
+      <div class="strelica-dolje">↓</div>
+<img class="homepage" src="/images/homepage.png" alt="sharpapp" />
+
 
   <img class="homepage" src="/images/homepage.png" alt="sharpapp" />
   <img class="oblak" src="/images/oblak.png" alt="sharpapp" />
@@ -32,11 +37,12 @@ Pronađi svog barbera, rezerviraj termin u nekoliko klikova i dođi po frizuru k
     <p class="frizeri">Frizeri</p> 
     
     <div class="imena-frizera">
-  <span v-for="frizer in frizeri" :key="frizer.id" class="ime">
+  <li v-for="frizer in frizeri" :key="frizer.id" class="ime">
     <img v-if="frizer.slikaId" :src="`http://localhost:3000/api/upload/${frizer.slikaId}`" class="profil" alt="Slika frizera">
     {{ frizer.ime }}
-  </span>
+  </li>
 </div>
+<br>
     <div class="block-element1"></div>
 
     <div class="raspored">
@@ -109,7 +115,7 @@ onMounted(() => {
     overflow-x: hidden;
 }
 
-.gumbR, .gumbT, .gumbP {
+.gumbR, .gumbT, .gumbP, .gumbL {
     background-color: #27374D;
     padding: 0.6rem 1.0rem; 
     border-radius: 0.5rem; 
@@ -137,6 +143,11 @@ onMounted(() => {
   .gumbP {
     margin-top: 1rem; 
     margin-right: 6rem;
+  }
+
+  .gumbL {
+    margin-top: 1rem; 
+    margin-left: 2rem;
   }
 
   .homepage {
@@ -185,16 +196,17 @@ onMounted(() => {
   }
 
   .profil {
-    height: 4rem;
-    margin-left:5rem;
-    margin-top: 3rem;
-    border-radius: 25px;
+    height: 3rem;
+    margin-top: 2rem;
+    border-radius: 15px;
   }
 
   .ime {
+    list-style-type: none;
     color: white;
     margin-left:6rem;
     margin-top: 0.5rem;
+    
   }
 
   .block-element1 { 
@@ -255,5 +267,27 @@ onMounted(() => {
     display: inline-block;
 
   }
+
+  .strelica-dolje {
+  position: absolute;
+  top: 30rem; 
+  left: 10%;
+  transform: translateX(-50%);
+  font-size: 3rem;
+  color: #1D2B3A;
+  animation: bounce 1.5s infinite;
+  z-index: 10;
+}
+
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
+}
+
 
 </style>
