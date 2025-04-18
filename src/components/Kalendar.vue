@@ -15,7 +15,7 @@
   const date = ref(new Date());
   const rules = ref({
     hours: { min: 9, max: 20 },
-    minutes: { interval: 30 },
+    minutes: { interval: 0 },
   });
 
   const Store = useTerminStore()
