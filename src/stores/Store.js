@@ -7,7 +7,7 @@ export const useTerminStore = defineStore('Store', () => {
     const frizer = ref(null)
     const usluga = ref(null)
     const datum = ref(null)
-    
+    const termini = ref([])
 
 
     function postaviKorisnika(email) {
@@ -29,6 +29,15 @@ export const useTerminStore = defineStore('Store', () => {
     function postaviDatum(noviDatum) {
         datum.value = noviDatum
     }
+
+    async function dohvatiTermine() {
+        try {
+            const response = await backend.get('/termini')
+            termini.value = response.data 
+        } catch (error) {
+            console.log("Greška prilikom dohvaćanja termina")
+        }
+    }
     
     async function spremiTermin() {
         try {
@@ -49,11 +58,13 @@ export const useTerminStore = defineStore('Store', () => {
         frizer,
         usluga,
         datum,
+        termini,
         postaviKorisnika,
         postaviFrizera,
         postaviUslugu,
         postaviDatum,
         spremiTermin,
+        dohvatiTermine
       };
 },
       {
