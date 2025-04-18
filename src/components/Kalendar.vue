@@ -22,9 +22,7 @@
 
  let poruka = ref("")
 
- onMounted(async () => {
-    await Store.dohvatiTermine(); 
-})
+ 
 
  async function spremiTermin() {
   poruka.value = "Termin je uspiješno rezerviran!";
