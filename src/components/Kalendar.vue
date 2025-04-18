@@ -9,7 +9,7 @@
   <script setup>
   import { useRouter } from 'vue-router';
   import { useTerminStore } from '@/stores/Store';
-  import { ref } from 'vue';
+  import { ref, onMounted } from 'vue';
 
   const date = ref(new Date());
   const rules = ref({
@@ -22,8 +22,12 @@
 
  let poruka = ref("")
 
+ onMounted(async () => {
+    await Store.dohvatiTermine(); 
+})
+
  async function spremiTermin() {
-  poruka = "Termin je uspiješno rezerviran!";
+  poruka.value = "Termin je uspiješno rezerviran!";
 
   const lokalnoVrijeme = date.value.toLocaleString('hr-HR', {
     year: 'numeric',
@@ -33,11 +37,18 @@
     minute: '2-digit',
   });
 
+  const postoji = Store.termini.some(termin => termin.datum === lokalnoVrijeme);
+
+    if (postoji) {
+        poruka.value = "Termin je već zauzet. Odaberite drugi termin.";
+        alert(poruka.value);
+        return;
+    }
 
   Store.postaviDatum(lokalnoVrijeme); 
   await Store.spremiTermin();
   router.push({ path: '/home' });
-  alert(poruka);
+  alert(poruka.value);
 }
 
   
