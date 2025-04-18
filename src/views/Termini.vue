@@ -49,6 +49,7 @@ async function home() {
 
 .kuca {
   margin-top: 7rem;
+  position: relative;
 }
 
 </style>
