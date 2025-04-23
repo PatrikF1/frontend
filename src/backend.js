@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const baseURL = process.env.VUE_APP_API_URL || 'http://localhost:3000';
+//const baseURL = process.env.VUE_APP_API_URL || 'http://localhost:3000';
 
 
 const backend = axios.create({
-  baseURL,
+  baseURL: 'https://backend-tup4.onrender.com/api',
   timeout: 2000,
 });
 
