@@ -15,6 +15,7 @@
                 <div>{{ termin.usluga.usluga }}</div>
                 <div>{{ termin.datum }}</div>
               </li>
+              ------------------------------------------
             </div>
         </div>
     </div>

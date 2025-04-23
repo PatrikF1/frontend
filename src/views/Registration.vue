@@ -44,7 +44,11 @@
             </div>
           </div>
           <br>
-          <a href="#" class="font-semibold text-[#27374D] ">Forgot password?</a>
+          <p class="mt-10 text-center text-sm/6 text-gray-500">
+        Imate profil?
+        {{ ' ' }}
+        <a @click="logiraj()" class="font-semibold text-[#27374D] ">Ulogiraj se</a>
+      </p>
           <div>
             <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
           </div>
@@ -105,7 +109,9 @@
     }
   }
   
-  
+  async function logiraj() {
+    router.push({path:'/login'})
+  }
   
   </script>
   

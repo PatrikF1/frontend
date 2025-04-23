@@ -7,7 +7,7 @@
   <div>
     <h1>Termini:</h1>
     <ul>
-  <li v-for="termin in Store.termini">
+  <li v-for="termin in termini">
     Frizer: {{ termin.frizer.ime }} – Datum: {{ termin.datum }}
   </li>
 </ul>
@@ -25,13 +25,39 @@ import azuriranjeFrizera from '@/components/azuriranjeFrizera.vue';
 import dodavanjeUsluge from '@/components/dodavanjeUsluge.vue';
 
 import router from '@/router';
-import { useTerminStore } from '@/stores/Store';
+import { onMounted, ref } from 'vue';
+import backend from '@/backend';
 
-const Store = useTerminStore()
+
+const termini = ref([])
+const poruka = ref('')
+
+async function dohvatiTermine () {
+    poruka.value = ''
+try {
+    const response = await backend.get('/termini')
+    console.log(response.data)
+    termini.value = response.data
+} catch (error) {
+    console.error(error.message)
+    if (error.response && error.response.data) {
+      poruka.value = error.response.data.message || error.response.data
+    } else {
+      poruka.value = 'Doslo je do greske'
+    }
+
+    alert(poruka.value)
+}
+}
+
 
 async function nazad() {
   router.push({path:"/login"})
 }
+
+onMounted(() => {
+    dohvatiTermine()
+})
 
 </script>
 

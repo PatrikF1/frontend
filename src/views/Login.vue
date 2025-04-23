@@ -33,7 +33,7 @@
       <p class="mt-10 text-center text-sm/6 text-gray-500">
         Niste Registrirani?
         {{ ' ' }}
-        <a href="#" class="font-semibold text-[#27374D] ">Registrirajte se</a>
+        <a @click="registracija()" class="font-semibold text-[#27374D] ">Registrirajte se</a>
       </p>
     </div>
   </div>
@@ -92,6 +92,10 @@ async function prijava() {
     email.value = ""
     password.value = ""
   }
+}
+
+async function registracija () {
+  router.push({path:'/registration'})
 }
 
 
