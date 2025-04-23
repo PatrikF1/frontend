@@ -1,12 +1,11 @@
 import axios from "axios";
 
-const baseURL = process.env.VUE_APP_BASE_URL;
+const baseURL = process.env.VUE_APP_API_URL || 'http://localhost:3000';
 
-const mainURL = process.env.VUE_APP_API_URL;
 
 const backend = axios.create({
-  mainURL: 'https://backend-tup4.onrender.com' || mainURL,
-  timeout: 2000, 
+  baseURL,
+  timeout: 2000,
 });
 
 export default backend;
