@@ -6,8 +6,8 @@
       <button v-for="frizer in frizeri" class="gumb-frizer" @click="odabir(frizer)">
         <h2 class="info">{{ frizer.ime }} {{ frizer.prezime }}</h2>
         <p>{{ frizer.iskustvo }}</p>
-        <img v-if="frizer.slikaId" :src="`http://localhost:3000/api/upload/${frizer.slikaId}`" class="slikaProfila" alt="Slika frizera">
-
+        <img v-if="frizer.slikaId" :src="`https://backend-tup4.onrender.com/api/${frizer.slikaId}`" class="slikaProfila" alt="Slika frizera">
+        
         <p class="click">&#x2702;&#xFE0F</p>
       </button>
     </div>

@@ -5,6 +5,7 @@
     <p v-if="Store.korisnik">Korisnik: {{ Store.korisnik.email }}</p>
     <p v-if="Store.frizer">Frizer: {{ Store.frizer.ime }} {{ Store.frizer.prezime }}</p>
     <p v-if="Store.usluga">Usluga: {{ Store.usluga.usluga }} </p>
+    <hr>
   </div>
     <Kalendar/>
     
