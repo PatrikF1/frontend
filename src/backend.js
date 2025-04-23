@@ -6,7 +6,6 @@ const mainURL = process.env.VUE_APP_API_URL;
 
 const backend = axios.create({
   mainURL,
-  baseURL, 
   timeout: 2000, 
 });
 
