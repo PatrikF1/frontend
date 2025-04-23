@@ -4,7 +4,7 @@
     <div class="lista-usluga">
       <div v-if="loading" class="loading">Pricekajte...</div>
       
-      <button v-for="usluga in usluge" :key="usluga.usluga" class="gumb-usluge" @click="odabir(usluga)">
+      <button v-for="usluga in usluge" class="gumb-usluge" @click="odabir(usluga)">
         <h2>{{ usluga.usluga }}</h2>
         <p>{{ usluga.trajanje }} min</p>
         <p>{{ usluga.cijena }} €</p>

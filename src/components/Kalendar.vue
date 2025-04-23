@@ -3,7 +3,7 @@
     <VDatePicker class="kalendar" v-model="date" mode="dateTime" :rules="rules" is24hr/>
     <div class="gumbo">
     <button @click="spremiTermin" type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-blue-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Spremi Termin!</button>
-    <li v-for="termin in Store.termini"> {{ termin.datum }} </li>
+    <li v-for="termin in Store.termini"> {{ termin.datum }} - {{ termin.frizer.ime }} </li>
   </div>
   </template>
   
@@ -15,7 +15,7 @@
   const date = ref(new Date());
   const rules = ref({
     hours: { min: 9, max: 20 },
-    minutes: { interval: 0 },
+    minutes: { interval: 60 },
   });
 
   const Store = useTerminStore()
@@ -38,7 +38,7 @@
     minute: '2-digit',
   });
 
-  const postoji = Store.termini.some(termin => termin.datum === lokalnoVrijeme);
+  const postoji = Store.termini.some(termin => termin.datum === lokalnoVrijeme && termin.frizer._id === Store.frizer._id);
 
     if (postoji) {
         poruka.value = "Termin je već zauzet. Odaberite drugi termin.";

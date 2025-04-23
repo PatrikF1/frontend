@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h1>Dodaj frizera</h1>
+      <h1>Dodaj uslugu</h1>
       <form @submit.prevent="dodajUslugu" action="#" method="POST">
         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div class="sm:col-span-3">

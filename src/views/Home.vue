@@ -10,9 +10,6 @@
         <button class="gumbT">
           <router-link to="/svitermini" class="link-text">Termini</router-link>
         </button>
-        <button class="gumbP">
-          <router-link to="/profil" class="link-text">Profil</router-link>
-        </button>
       </div>
 
       <button class="gumbL" v-on:click="logout">Logout</button>
@@ -37,7 +34,7 @@ Pronađi svog barbera, rezerviraj termin u nekoliko klikova i dođi po frizuru k
     <p class="frizeri">Frizeri</p> 
     
     <div class="imena-frizera">
-  <li v-for="frizer in frizeri" :key="frizer.id" class="ime">
+  <li v-for="frizer in frizeri" class="ime">
     <img v-if="frizer.slikaId" :src="`http://localhost:3000/api/upload/${frizer.slikaId}`" class="profil" alt="Slika frizera">
     {{ frizer.ime }}
   </li>
@@ -147,7 +144,7 @@ onMounted(() => {
 
   .gumbL {
     margin-top: 1rem; 
-    margin-left: 2rem;
+    margin-left: 4rem;
   }
 
   .homepage {
