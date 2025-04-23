@@ -52,6 +52,11 @@ async function odabir(frizer) {
 
 }
 
+async function dohvat () {
+let slike = `https://backend-tup4.onrender.com/api/upload/${frizer.slikaId}`
+return slike
+}
+
 onMounted(() => {
   dohvatiFrizera()
 })

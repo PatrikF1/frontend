@@ -4,7 +4,7 @@ import axios from "axios";
 
 
 const backend = axios.create({
-  baseURL: 'https://backend-tup4.onrender.com/api',
+  baseURL: 'https://backend-tup4.onrender.com/api' || 'http://localhost:3000',
   timeout: 2000,
 });
 

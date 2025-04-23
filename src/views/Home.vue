@@ -28,17 +28,18 @@
     <p class="txt">Mi smo ekipa koja zna - prava frizura je više od frizure. To je tvoj osobni potpis, i mi smo tu da ti pomognemo da izgledaš kao pravi kralj. Naša aplikacija ti omogućuje da brzo i jednostavno zakoračiš u svijet vrhunskih barbera, bez čekanja i gubljenja vremena.
 Pronađi svog barbera, rezerviraj termin u nekoliko klikova i dođi po frizuru koja će te izdići iz mase. Jer tvoj stil je naša misija. </p>
 
-    <div class="block-element"></div> 
+   
 
-
+<div class="block-element">
     <p class="frizeri">Frizeri</p> 
-    
     <div class="imena-frizera">
   <li v-for="frizer in frizeri" class="ime">
-    <img v-if="frizer.slikaId" :src="`http://localhost:3000/api/upload/${frizer.slikaId}`" class="profil" alt="Slika frizera">
+    <img v-if="frizer.slikaId" :src="`https://backend-tup4.onrender.com/api/upload/${frizer.slikaId}`" class="profil" alt="Slika frizera">
     {{ frizer.ime }}
   </li>
 </div>
+</div> 
+
 <br>
     <div class="block-element1"></div>
 
@@ -179,8 +180,9 @@ onMounted(() => {
   }
 
   .block-element { 
-    padding: 150px;
-    margin: 45px;
+    margin-left: 2.5rem;
+    position: relative;
+    margin-top: 25rem;
     background-color: #526D82; 
     width: 300px; 
   }
@@ -193,6 +195,7 @@ onMounted(() => {
   }
 
   .profil {
+    margin-left: -0.5rem;
     height: 3rem;
     margin-top: 2rem;
     border-radius: 15px;
@@ -201,7 +204,7 @@ onMounted(() => {
   .ime {
     list-style-type: none;
     color: white;
-    margin-left:6rem;
+    margin-left:3rem;
     margin-top: 0.5rem;
     
   }
