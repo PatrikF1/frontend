@@ -105,5 +105,8 @@ npm run serve
 - [Live aplikacija](frontend-patrikf1s-projects.vercel.app)  
 
 
+## Admin Login
 
+- email: admin@sharpapp.hr
+- password: Monster12
 
